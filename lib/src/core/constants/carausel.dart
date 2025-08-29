@@ -1,0 +1,15 @@
+const List<String> carauselImages = [
+  'https://f1m9.blob.core.windows.net/f1m9/banner/2400x500_mx3_1x.webp',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-180.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/astro.webp',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/Casino-Inicio-BONO-25-Destop.webp',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER---IMOON.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/Casino-Inicio-BONO-10-Destop.webp',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-CUPON.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/Casino-Inicio-BONO-Rescate-Destop.webp',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-100.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-CUMPLEANOS.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-RESCATE.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-2000.png',
+  'https://f1m9.blob.core.windows.net/f1m9/banner/BANNER-150.png',
+];
