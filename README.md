@@ -1,16 +1,15 @@
-# fun88
+# FUN88
 
-A new Flutter project.
+an MIs Code Test
 
-## Getting Started
+## Kindly Follow
 
-This project is a starting point for a Flutter application.
+By default, browsers block requests to resources from a different domain unless the server explicitly allows it with CORS headers. Since Flutter web apps run in the browser, any http calls from the prject are subject to those CORS checks.
 
-A few resources to get you started if this is your first Flutter project:
+Since the network image failed to load due to this blocker the command below is required for the project to run smoothly:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+flutter run -d chrome --wasm --web-browser-flag --disable-web-security
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
