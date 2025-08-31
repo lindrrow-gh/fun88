@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/constants/double.dart';
 import '../../../core/constants/int.dart';
 import '../../../core/constants/string.dart';
 import '../../../core/services/theme/bloc/theme_bloc.dart';
@@ -44,38 +45,47 @@ class ProviderContainer extends StatelessWidget {
         color: themeState.isDarkMode
             ? const Color(ConstantInt.darkSecondary)
             : const Color(ConstantInt.lightSecondary),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              provider.name,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-            ),
-            Row(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            bool isFirstBreakPont =
+                constraints.maxWidth <= ConstantDouble.breakPointFirst;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  provider.count.toString(),
+                  provider.name,
                   style: TextStyle(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onPrimaryContainer.withAlpha(99),
+                    fontSize: isFirstBreakPont ? 12 : 14,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                 ),
-                Text(
-                  " ${ConstantString.juegos.toUpperCase()}",
-                  style: TextStyle(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onPrimaryContainer.withAlpha(99),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      provider.count.toString(),
+                      style: TextStyle(
+                        fontSize: isFirstBreakPont ? 12 : 14,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onPrimaryContainer.withAlpha(99),
+                      ),
+                    ),
+                    Text(
+                      " ${ConstantString.juegos}",
+                      style: TextStyle(
+                        fontSize: isFirstBreakPont ? 12 : 14,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onPrimaryContainer.withAlpha(99),
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

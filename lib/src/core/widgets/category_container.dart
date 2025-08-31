@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/constants/double.dart';
 import '../../../core/services/theme/bloc/theme_bloc.dart';
 import '../../games/presentation/bloc/games/games_bloc.dart';
 
@@ -42,7 +43,9 @@ class CategoryContainer extends StatelessWidget {
                   ),
                 ),
               ),
-              child: selected
+              child: LayoutBuilder(builder: (context, constraints) {
+                bool isFirstBreakPoint = constraints.maxWidth <= ConstantDouble.breakPointFirst;
+                return selected
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -51,6 +54,7 @@ class CategoryContainer extends StatelessWidget {
                           category.category,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
+                            fontSize: isFirstBreakPoint ? 12 : 14,
                             color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
@@ -69,13 +73,15 @@ class CategoryContainer extends StatelessWidget {
                           category.category,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
+                            fontSize: isFirstBreakPoint ? 12 : 14,
                             color: Theme.of(
                               context,
                             ).colorScheme.onPrimaryContainer,
                           ),
                         ),
                       ],
-                    ),
+                    );
+              }),
             ),
             if (selected)
               Container(

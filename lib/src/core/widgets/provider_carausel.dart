@@ -31,13 +31,19 @@ class _ProviderCarauselState extends State<ProviderCarausel> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          ConstantString.providersTitle,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            bool isFirstBreakPoint =
+                constraints.maxWidth <= ConstantDouble.breakPointFirst;
+            return Text(
+              ConstantString.providersTitle,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: isFirstBreakPoint ? 14 : 16,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
+            );
+          },
         ),
         const Spacer(),
         if (displayScroll) ...[

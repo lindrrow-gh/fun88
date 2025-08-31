@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/double.dart';
 import '../../../../core/constants/int.dart';
 import '../../../../core/constants/string.dart';
+import '../../../../core/services/log/log.dart';
 import '../../../../core/services/theme/bloc/theme_bloc.dart';
 import '../../../../core/wigets/appbar.dart';
 import '../../../../core/wigets/buttons.dart';
@@ -60,13 +61,17 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _appBar(BuildContext context) {
-    return Appbar(
-      child: LayoutBuilder(
+  PreferredSizeWidget _appBar(BuildContext context) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      elevation: 3,
+      title: LayoutBuilder(
         builder: (context, constraints) {
+          bool isFirstBreakPoint =
+              constraints.maxWidth <= ConstantDouble.breakPointFirst;
           return Row(
             children: [
-              if (constraints.maxWidth <= ConstantDouble.breakPointFirst) ...[
+              if (isFirstBreakPoint) ...[
                 IconButton(
                   icon: Icon(Icons.menu),
                   iconSize: 30,
@@ -79,7 +84,7 @@ class HomePage extends StatelessWidget {
               ],
               Image.asset(
                 ConstantAsset.logo,
-                height: constraints.maxWidth < ConstantDouble.breakPointFirst
+                height: isFirstBreakPoint
                     ? 16
                     : 22,
               ),
@@ -94,6 +99,7 @@ class HomePage extends StatelessWidget {
                           (item) => Text(
                             item,
                             style: TextStyle(
+                              fontSize: isFirstBreakPoint ? 14 : 16,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -151,7 +157,9 @@ class HomePage extends StatelessWidget {
     int active = navigationItems.indexOf('Casino');
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth <= ConstantDouble.breakPointFirst) {
+        bool isFirstBreakPoint =
+              constraints.maxWidth <= ConstantDouble.breakPointFirst;
+        if (isFirstBreakPoint) {
           return Appbar(
             isBottom: true,
             child: Row(
@@ -205,7 +213,6 @@ class HomePage extends StatelessWidget {
           );
         }
         return SizedBox.shrink();
-
       },
     );
   }
@@ -213,14 +220,11 @@ class HomePage extends StatelessWidget {
   Widget _body(BuildContext context) {
     final themeState = context.watch<ThemeBloc>().state;
     return Scaffold(
+      appBar: _appBar(context),
       drawer: appDrawer(context),
       body: _listeners(
         child: Column(
-          children: [
-            _appBar(context),
-            _content(),
-            _bottomNavigation(context, themeState),
-          ],
+          children: [_content(), _bottomNavigation(context, themeState)],
         ),
       ),
       floatingActionButton: _floatingActionButton(themeState),
@@ -233,7 +237,7 @@ class HomePage extends StatelessWidget {
       create: (context) => GameBloc()
         ..add(const GameEvent.getProviders())
         ..add(const GameEvent.getCategories()),
-      child: _listeners(child: _body(context)),
+      child: _body(context),
     );
   }
 }

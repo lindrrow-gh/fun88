@@ -20,7 +20,6 @@ class GamesGrid extends StatelessWidget {
     BuildContext context, {
     required VoidCallback onPressed,
   }) {
-
     double gamePercentage = (state.games.length / state.currentTotalGames);
     return SizedBox(
       width: 150,
@@ -81,6 +80,7 @@ class GamesGrid extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       itemCount: state.games.length,
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: toDisplay,
         childAspectRatio: 1,
@@ -100,7 +100,8 @@ class GamesGrid extends StatelessWidget {
       highlightColor: Colors.grey.shade100,
       child: GridView.builder(
         shrinkWrap: true,
-        itemCount: state.games.length,
+        itemCount: 45,
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: toDisplay,
           childAspectRatio: 1,

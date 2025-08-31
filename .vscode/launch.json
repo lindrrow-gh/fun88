@@ -1,12 +1,14 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
       "name": "FUN88-WEB",
       "program": "lib/main.dart",
       "request": "launch",
       "type": "dart",
       "args": [
+        "--wasm",
         "--web-browser-flag",
         "--disable-web-security"
       ]
